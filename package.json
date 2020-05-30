@@ -1,0 +1,38 @@
+{
+	"name": "ssr_shop",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "nodemon --watch './src/**/*.ts' --exec ts-node ./src/server/server.ts"
+	},
+	"dependencies": {
+		"@types/body-parser": "^1.19.0",
+		"@types/express": "^4.17.6",
+		"@types/node": "^14.0.5",
+		"body-parser": "^1.19.0",
+		"dotenv": "^8.2.0",
+		"envalid": "^6.0.1",
+		"express": "^4.17.1",
+		"mongoose": "^5.9.16",
+		"ts-node": "^8.10.1",
+		"typescript": "^3.9.3"
+	},
+	"devDependencies": {
+		"@types/mongoose": "^5.7.21",
+		"@typescript-eslint/eslint-plugin": "^3.0.0",
+		"@typescript-eslint/parser": "^3.0.0",
+		"@typescript-eslint/typescript-estree": "^3.0.0",
+		"eslint": "^7.1.0",
+		"eslint-config-prettier": "^6.11.0",
+		"eslint-import-resolver-node": "^0.3.3",
+		"eslint-plugin-prettier": "^3.1.3",
+		"nodemon": "^2.0.4",
+		"prettier": "^2.0.5",
+		"rimraf": "^3.0.2"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/DmytriyZahrebelny/ssr_shop.git"
+	}
+}

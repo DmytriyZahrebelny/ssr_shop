@@ -3,8 +3,6 @@ import Products from './products.interface';
 import Controller from '../../interfaces/controller.interface';
 import productModel from './products.model';
 
-console.log(productModel);
-
 class ProductsController implements Controller {
 	public path = '/products';
 	public router = express.Router();

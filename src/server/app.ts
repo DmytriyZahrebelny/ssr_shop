@@ -34,6 +34,8 @@ class App {
 
 	private connectToTheDatabase(): void {
 		const { MONGO_USER, MONGO_PASSWORD, MONGO_PATH } = process.env;
+
+		mongoose.set('debug', true);
 		mongoose.connect(`mongodb://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,

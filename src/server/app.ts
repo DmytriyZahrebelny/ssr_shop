@@ -3,6 +3,7 @@ import * as bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import { loggerMiddleware } from './middleware/logger.middleware';
 import Controller from './interfaces/controller.interface';
+import errorMiddleware from './middleware/error.middleware';
 
 class App {
 	public app: Application;
@@ -13,6 +14,7 @@ class App {
 		this.connectToTheDatabase();
 		this.initializeMiddlewares();
 		this.initializeControllers(controllers);
+		this.initializeErrorHandling();
 	}
 
 	private initializeMiddlewares() {
@@ -24,6 +26,10 @@ class App {
 		controllers.forEach((controller: Controller) => {
 			this.app.use('/', controller.router);
 		});
+	}
+
+	private initializeErrorHandling() {
+		this.app.use(errorMiddleware);
 	}
 
 	public listen(): void {

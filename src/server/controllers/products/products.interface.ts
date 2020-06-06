@@ -1,4 +1,5 @@
-interface Products {
+export interface Product {
+	_id: string;
 	id: string;
 	image: string;
 	price: string;
@@ -9,4 +10,10 @@ interface Products {
 	updatedAt: string;
 }
 
-export default Products;
+export interface CreateProductData {
+	image: string;
+	price: string;
+	title: string;
+	type: string;
+	description: string;
+}

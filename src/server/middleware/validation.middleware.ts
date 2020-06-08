@@ -9,7 +9,7 @@ const validationMiddleware = (type: any, skipMissingProperties = false): Request
 			(errors: ValidationError[]) => {
 				if (errors.length) {
 					const message = errors
-						.map((error: ValidationError) => Object.values(error.constraints))
+						.map((error: ValidationError) => Object.values(error.constraints || ''))
 						.join(', ');
 					next(new HttpException(400, message));
 				} else {

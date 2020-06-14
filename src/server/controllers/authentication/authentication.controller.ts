@@ -1,6 +1,5 @@
 import * as bcrypt from 'bcrypt';
 import express, { Request, Response, NextFunction } from 'express';
-import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import User from '../users/user.interface';
 import UserWithThatEmailAlreadyExistsException from '../../exceptions/UserWithThatEmailAlreadyExistsException';
@@ -24,7 +23,7 @@ class AuthenticationController implements Controller {
 
 	private initializeRoutes() {
 		this.router.post(
-			`${this.path}/register`,
+			`${this.path}/registration`,
 			validationMiddleware(CreateUserDto),
 			this.registration
 		);
@@ -42,7 +41,7 @@ class AuthenticationController implements Controller {
 				...userData,
 				password: hashedPassword,
 			});
-			user.password = undefined;
+			user.password = '';
 			const tokenData = this.createToken(user);
 			response.setHeader('Set-Cookie', [this.createCookie(tokenData)]);
 			response.send(user);
@@ -55,7 +54,7 @@ class AuthenticationController implements Controller {
 		if (user) {
 			const isPasswordMatching = await bcrypt.compare(logInData.password, user.password);
 			if (isPasswordMatching) {
-				user.password = undefined;
+				user.password = '';
 				const tokenData = this.createToken(user);
 				response.setHeader('Set-Cookie', [this.createCookie(tokenData)]);
 				response.send(user);
@@ -76,9 +75,9 @@ class AuthenticationController implements Controller {
 		return `Authorization=${tokenData.token}; HttpOnly; Max-Age=${tokenData.expiresIn}`;
 	}
 
-	private createToken(user: User): TokenData {
+	private createToken(user: User & { _id: string }): TokenData {
 		const expiresIn = 60 * 60;
-		const secret = process.env.JWT_SECRET;
+		const secret = process.env.JWT_SECRET || '';
 		const dataStoredInToken: DataStoredInToken = {
 			_id: user._id,
 		};

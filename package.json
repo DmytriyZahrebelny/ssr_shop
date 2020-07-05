@@ -1,5 +1,5 @@
 {
-	"name": "ssr_shop",
+	"name": "api_shop",
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
@@ -38,9 +38,5 @@
 		"nodemon": "^2.0.4",
 		"prettier": "^2.0.5",
 		"rimraf": "^3.0.2"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/DmytriyZahrebelny/ssr_shop.git"
 	}
 }
